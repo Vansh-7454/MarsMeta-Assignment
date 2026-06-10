@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getProfile } from "../services/api";
 import { Link } from "react-router-dom";
 import { FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa";
+import { FaPhone, FaEnvelope, FaLocationDot } from "react-icons/fa6";
 import { motion } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
 
@@ -21,13 +22,17 @@ function ViewProfile() {
     }
   };
 
-  if (!profile) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-slate-950 text-white">
-        <h1 className="text-3xl animate-pulse">Loading Profile...</h1>
+if (!profile) {
+  return (
+    <div className="min-h-screen bg-slate-950 flex items-center justify-center">
+      <div className="animate-pulse text-center">
+        <div className="w-32 h-32 bg-white/10 rounded-full mx-auto"></div>
+        <div className="h-6 w-48 bg-white/10 rounded mx-auto mt-6"></div>
+        <div className="h-4 w-64 bg-white/10 rounded mx-auto mt-3"></div>
       </div>
-    );
-  }
+    </div>
+  );
+}
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-slate-950 via-purple-950 to-slate-950 py-10 px-4">
@@ -42,7 +47,7 @@ function ViewProfile() {
           initial={{ opacity: 0, y: 25 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="backdrop-blur-xl bg-white/10 border border-white/20 rounded-3xl p-8 text-white"
+          className="backdrop-blur-2xl bg-white/10 border border-white/20 rounded-[36px] p-8 text-white shadow-[0_20px_60px_rgba(0,0,0,0.35)]"
         >
 
           {/* Profile */}
@@ -51,7 +56,7 @@ function ViewProfile() {
             <img
               src={profile.photo}
               alt={profile.name}
-              className="w-40 h-40 rounded-full border-4 border-purple-400 object-cover shadow-[0_0_40px_rgba(168,85,247,0.5)]"
+              className="w-40 h-40 rounded-full border-4 border-purple-400 object-cover shadow-[0_0_40px_rgba(168,85,247,0.5)] transition duration-300 hover:scale-105 hover:shadow-[0_0_60px_rgba(168,85,247,0.8)]"
             />
 
             <TypeAnimation
@@ -94,89 +99,86 @@ function ViewProfile() {
 
           </div>
 
-          {/* Skills */}
-          <div className="mt-10">
+  {/* Skills */}
+<div className="mt-10">
 
-            <h2 className="text-2xl font-bold mb-4">
-              Skills
-            </h2>
+  <h2 className="text-2xl font-bold mb-4">
+    Skills
+  </h2>
 
-            <div className="flex flex-wrap gap-3">
+  <div className="flex flex-wrap gap-3">
 
-              {profile.skills?.map((skill, index) => (
-                <motion.span
-                  key={index}
-                  whileHover={{
-                    scale: 1.15,
-                    y: -8,
-                    rotate: 3
-                  }}
-                  transition={{ duration: 0.2 }}
-                  className="px-4 py-2 rounded-full bg-purple-500/20 border border-purple-400/30 text-sm cursor-pointer hover:shadow-[0_0_20px_rgba(168,85,247,0.5)] transition-all duration-300"
-                >
-                  {skill}
-                </motion.span>
-              ))}
+    {profile.skills?.map((skill, index) => (
+      <motion.span
+        key={index}
+        whileHover={{
+          scale: 1.15,
+          y: -8,
+          rotate: 3
+        }}
+        transition={{ duration: 0.2 }}
+        className="px-4 py-2 rounded-full bg-purple-500/20 border border-purple-400/30 text-sm cursor-pointer hover:shadow-[0_0_20px_rgba(168,85,247,0.5)] transition-all duration-300"
+      >
+        {skill}
+      </motion.span>
+    ))}
 
-            </div>
+  </div>
 
-          </div>
+</div>
 
-          {/* Contact */}
-          <div className="mt-10">
+{/* Contact Information */}
+<div className="mt-14">
 
-            <h2 className="text-2xl font-bold mb-4">
-              Contact Information
-            </h2>
+  <h2 className="text-2xl font-bold mb-6">
+    Contact Information
+  </h2>
 
-            <div className="grid md:grid-cols-3 gap-4">
+  <div className="grid md:grid-cols-3 gap-5">
 
-              <motion.div
-                whileHover={{
-                  scale: 1.08,
-                  rotate: 4,
-                  y: -12
-                }}
-                whileTap={{
-                  scale: 0.97
-                }}
-                className="bg-white/10 p-4 rounded-xl cursor-pointer border border-purple-500/20 hover:border-purple-400 transition-all duration-300 shadow-lg hover:shadow-[0_0_35px_rgba(168,85,247,0.5)]"
-              >
-                📞 {profile.phone}
-              </motion.div>
+    <motion.div
+      whileHover={{
+        scale: 1.05,
+        y: -10
+      }}
+      className="bg-white/10 p-6 rounded-3xl text-center border border-purple-500/20 hover:border-purple-400 transition-all duration-300 shadow-lg hover:scale-105 hover:shadow-[0_0_35px_rgba(168,85,247,0.5)]"
+    >
+      <FaPhone className="mx-auto text-3xl text-green-400 mb-3" />
+      <p className="text-gray-400 text-sm">Phone</p>
+      <p className="font-semibold mt-2">{profile.phone}</p>
+    </motion.div>
 
-              <motion.div
-                whileHover={{
-                  scale: 1.08,
-                  rotate: -4,
-                  y: -12
-                }}
-                whileTap={{
-                  scale: 0.97
-                }}
-                className="bg-white/10 p-4 rounded-xl break-all cursor-pointer border border-purple-500/20 hover:border-purple-400 transition-all duration-300 shadow-lg hover:shadow-[0_0_35px_rgba(168,85,247,0.5)]"
-              >
-                📧 {profile.email}
-              </motion.div>
+    <motion.div
+      whileHover={{
+        scale: 1.05,
+        y: -10
+      }}
+      className="bg-white/10 p-5 rounded-2xl text-center border border-purple-500/20 hover:border-purple-400 transition-all duration-300 shadow-lg hover:shadow-[0_0_35px_rgba(168,85,247,0.5)]"
+    >
+      <FaEnvelope className="mx-auto text-3xl text-blue-400 mb-3" />
+      <p className="text-gray-400 text-sm">Email</p>
+      <p className="font-semibold mt-2 break-all">
+        {profile.email}
+      </p>
+    </motion.div>
 
-              <motion.div
-                whileHover={{
-                  scale: 1.08,
-                  rotate: 4,
-                  y: -12
-                }}
-                whileTap={{
-                  scale: 0.97
-                }}
-                className="bg-white/10 p-4 rounded-xl cursor-pointer border border-purple-500/20 hover:border-purple-400 transition-all duration-300 shadow-lg hover:shadow-[0_0_35px_rgba(168,85,247,0.5)]"
-              >
-                📍 {profile.location}
-              </motion.div>
+    <motion.div
+      whileHover={{
+        scale: 1.05,
+        y: -10
+      }}
+      className="bg-white/10 p-5 rounded-2xl text-center border border-purple-500/20 hover:border-purple-400 transition-all duration-300 shadow-lg hover:shadow-[0_0_35px_rgba(168,85,247,0.5)]"
+    >
+      <FaLocationDot className="mx-auto text-3xl text-pink-400 mb-3" />
+      <p className="text-gray-400 text-sm">Location</p>
+      <p className="font-semibold mt-2">
+        {profile.location}
+      </p>
+    </motion.div>
 
-            </div>
+  </div>
 
-          </div>
-
+</div>
           {/* Social */}
           <div className="mt-10">
 
@@ -184,13 +186,13 @@ function ViewProfile() {
               Social Profiles
             </h2>
 
-            <div className="flex justify-center gap-8 text-4xl">
+            <div className="flex justify-center gap-5">
 
               <a
                 href={profile.linkedin}
                 target="_blank"
                 rel="noreferrer"
-                className="hover:text-blue-400 hover:scale-150 hover:drop-shadow-[0_0_15px_rgba(168,85,247,0.8)] transition duration-300"
+                className="w-14 h-14 flex items-center justify-center rounded-2xl bg-white/10 border border-white/20 text-2xl transition-all duration-300 hover:scale-110 hover:bg-blue-500/20 hover:border-blue-400"
               >
                 <FaLinkedin />
               </a>
@@ -199,7 +201,7 @@ function ViewProfile() {
                 href={profile.github}
                 target="_blank"
                 rel="noreferrer"
-                className="hover:text-gray-300 hover:scale-150 hover:drop-shadow-[0_0_15px_rgba(168,85,247,0.8)] transition duration-300"
+                className="w-14 h-14 flex items-center justify-center rounded-2xl bg-white/10 border border-white/20 text-2xl transition-all duration-300 hover:scale-110 hover:bg-white/20"
               >
                 <FaGithub />
               </a>
@@ -208,7 +210,7 @@ function ViewProfile() {
                 href={profile.instagram}
                 target="_blank"
                 rel="noreferrer"
-                className="hover:text-pink-400 hover:scale-150 hover:drop-shadow-[0_0_15px_rgba(168,85,247,0.8)] transition duration-300"
+                className="w-14 h-14 flex items-center justify-center rounded-2xl bg-white/10 border border-white/20 text-2xl transition-all duration-300 hover:scale-110 hover:bg-pink-500/20 hover:border-pink-400"
               >
                 <FaInstagram />
               </a>
@@ -218,7 +220,7 @@ function ViewProfile() {
           </div>
 
           {/* Buttons */}
-          <div className="grid grid-cols-2 gap-4 mt-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-10">
 
             <motion.a
               whileHover={{
@@ -259,7 +261,7 @@ function ViewProfile() {
               whileTap={{
                 scale: 0.97
               }}
-              className="w-full mt-6 bg-gradient-to-r from-purple-600 to-blue-600 py-3 rounded-xl font-semibold shadow-lg hover:shadow-[0_0_35px_rgba(168,85,247,0.7)]"
+             className="w-full mt-6 bg-gradient-to-r from-purple-600 via-fuchsia-600 to-blue-600 py-4 rounded-2xl font-semibold text-lg shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_40px_rgba(168,85,247,0.7)]"
             >
               Edit Profile
             </motion.button>

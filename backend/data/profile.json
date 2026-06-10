@@ -1,14 +1,9 @@
 {
   "photo": "/profile.jpg",
-
   "name": "Vansh Goel",
-
   "title": "Full Stack Developer",
-
   "description": "Passionate Full Stack Developer focused on creating modern, responsive and scalable web applications with excellent user experiences.",
-
   "about": "I am a Full Stack Developer with a strong interest in web technologies and software development. I enjoy building responsive user interfaces, developing REST APIs, and working with modern technologies such as React.js, Node.js, Express.js, and MongoDB. My goal is to create impactful digital solutions while continuously learning and improving my technical skills.",
-
   "skills": [
     "React.js",
     "Node.js",
@@ -19,16 +14,10 @@
     "REST API",
     "Git & GitHub"
   ],
-
   "phone": "+91 7454812437",
-
   "email": "goelvansh149@gmail.com",
-
   "location": "Ghaziabad, Uttar Pradesh, India",
-
   "linkedin": "https://www.linkedin.com/in/vansh-goel-406704289/",
-
   "github": "https://github.com/Vansh-7454",
-
   "instagram": "https://www.instagram.com/vanshgoel_46"
 }
